@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.3
 MAINTAINER Adrian B. Danieli "https://github.com/sickp"
 
-ENV NGINX_VERSION=1.9.9
+ENV NGINX_VERSION=1.9.12
 
 RUN \
   build_pkgs="build-base linux-headers openssl-dev pcre-dev wget zlib-dev" && \
@@ -15,8 +15,8 @@ RUN \
     --prefix=/etc/nginx \
     --sbin-path=/usr/sbin/nginx \
     --conf-path=/etc/nginx/nginx.conf \
-    --error-log-path=/var/log/nginx/error.log \
-    --http-log-path=/var/log/nginx/access.log \
+    --error-log-path=/dev/stdout \
+    --http-log-path=/dev/stdout \
     --pid-path=/var/run/nginx.pid \
     --lock-path=/var/run/nginx.lock \
     --http-client-body-temp-path=/var/cache/nginx/client_temp \
@@ -49,13 +49,13 @@ RUN \
     --with-http_v2_module && \
   make && \
   make install && \
-  sed -i -e 's/#access_log  logs\/access.log  main;/access_log \/dev\/stdout;/' -e 's/#error_log  logs\/error.log  notice;/error_log stderr notice;/' /etc/nginx/nginx.conf && \
   adduser -D nginx && \
   rm -rf /tmp/* && \
   apk del ${build_pkgs} && \
   rm -rf /var/cache/apk/*
 
 VOLUME ["/var/cache/nginx"]
+VOLUME ["/etc/nginx"]
 
 EXPOSE 80 443
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
