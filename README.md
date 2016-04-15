@@ -17,13 +17,14 @@ NAXSI lastest
 
 * Summary of set up
 Build && run
+
 * Configuration
--p 80:80 -p 443:443
--e DOMAIN=www.myawesomedoamin.com
--e BACKEND_SITE=10.1.1.1
--e SSL_CER=domain.crt
--e SSL_KEY=domain.key
--e SSL_DH=domain.pem
+1. -p 80:80 -p 443:443 
+2. -e DOMAIN=www.myawesomedoamin.com
+3. -e BACKEND_SITE=10.1.1.1
+4. -e SSL_CER=domain.crt
+5. -e SSL_KEY=domain.key
+6. -e SSL_DH=domain.pem
 
 * Dependencies
 docker
