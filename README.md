@@ -19,12 +19,18 @@ NAXSI lastest
 Build && run
 
 * Configuration
-1. -p 80:80 -p 443:443 
-2. -e DOMAIN=www.myawesomedoamin.com
-3. -e BACKEND_SITE=10.1.1.1
-4. -e SSL_CER=domain.crt
-5. -e SSL_KEY=domain.key
-6. -e SSL_DH=domain.pem
+
+```
+#!docker
+
+-p 80:80 -p 443:443 
+-e DOMAIN=www.myawesomedoamin.com
+-e BACKEND_SITE=10.1.1.1
+-e SSL_CER=domain.crt
+-e SSL_KEY=domain.key
+-e SSL_DH=domain.pem
+```
+
 
 * Dependencies
 docker
@@ -33,10 +39,22 @@ docker
 none
 
 * How to run tests
+
+```
+#!docker
+
 docker run -d -p 80:80 your-registry-site/docker-nginx-proxy 
+```
+
 
 * Deployment instructions
+
+```
+#!docker
+
 docker run -d -p 80:80 your-registry-site/docker-nginx-proxy 
+
+```
 
 
 ### Contribution guidelines ###
